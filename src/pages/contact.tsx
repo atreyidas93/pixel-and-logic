@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MessageSquare, Send, Github, Linkedin, Twitter, Globe, MapPin, Clock, Instagram } from 'lucide-react';
+import { Mail, MessageSquare, Send, Github, Linkedin, Globe, MapPin, Clock, Instagram } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
