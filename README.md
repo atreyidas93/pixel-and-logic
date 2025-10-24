@@ -1,4 +1,4 @@
-# 🌐 Atreyi Portfolio
+# 🌐 Atreyi's Portfolio
 
 A modern personal portfolio built with **React**, **TypeScript**, and **TailwindCSS** — designed to showcase my **technical projects**, **creative work**, and **personal story** in an elegant, interactive way.
 
