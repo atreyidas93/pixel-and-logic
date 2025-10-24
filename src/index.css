@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+.glass {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.glass-hover:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-hover:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.container-custom {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+body {
+  background: linear-gradient(to bottom right, #f8fafc, #f1f5f9);
+  min-height: 100vh;
+}
+
+.dark body {
+  background: linear-gradient(to bottom right, #0f172a, #111827);
+}
