@@ -49,11 +49,20 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link
-            to="/"
-            className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-          >
-            atreyi.dev
+          <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+            {/* Simple Logo - Modern A */}
+            <div className="relative">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-xl">A</span>
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
+            </div>
+            
+            {/* Logo Text */}
+            <div className="hidden sm:block">
+              <div className="text-lg font-bold text-gray-900 dark:text-white">Atreyi's</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Portfolio</div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
