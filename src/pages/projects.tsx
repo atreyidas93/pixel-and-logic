@@ -25,12 +25,22 @@ const Projects: React.FC = () => {
       title: 'Reusable Component Library',
       description: 'A framework-agnostic component library built to travel seamlessly across modern web stacks — React, Angular, Vue, or plain Web Components.',
       category: 'design',
-      technologies: ['Web Component', 'Javascript', 'CSS'],
+      technologies: ['Web Component', 'TypeSript', 'CSS', 'Storybook'],
       github: 'https://github.com/atreyidas93/nomad-ui-lib',
       featured: true,
     },
     {
       id: 2,
+      title: 'Portfolio Template',
+      description: 'Modern, responsive portfolio template with dark mode, animations, and easy customization.',
+      category: 'web',
+      technologies: ['React.Js', 'Typescript', 'Tailwind CSS'],
+      github: 'https://github.com/atreyidas93/pixel-and-logic',
+      live: 'https://atreyidas93.github.io/pixel-and-logic/',
+      featured: true
+    },
+    {
+      id: 3,
       title: 'Task Management App',
       description: 'Collaborative task management tool with drag-and-drop interface, real-time updates, and team analytics.',
       category: 'tool',
@@ -38,18 +48,11 @@ const Projects: React.FC = () => {
       github: 'https://github.com/atreyidas93/task-management-system',
     },
     {
-      id: 3,
-      title: 'Portfolio Template',
-      description: 'Modern, responsive portfolio template with dark mode, animations, and easy customization.',
-      category: 'design',
-      technologies: ['React.Js', 'Typescript', 'Tailwind CSS'],
-    },
-    {
       id: 4,
       title: 'Aircraft Inspection and Maintenance Report Generating System',
-      description: 'Auto-generate beautiful API documentation from OpenAPI specifications with interactive examples.',
+      description: 'Centralized Data Management and Reporting System, to enhance aircraft maintenance efficiency through improved health checks',
       category: 'web',
-      technologies: ['.NET 8', 'ASP.NET', 'Swagger', 'RabbitMQ'],
+      technologies: ['.NET 8', 'ASP.NET', 'Swagger', 'RabbitMQ', 'SQL', 'SQLite', '.NET MAUI'],
       organization: 'Boeing',
       year: 2025
     },
@@ -58,18 +61,45 @@ const Projects: React.FC = () => {
       title: 'Aircraft Simulation and Test Information Reduction System',
       description: 'Centralized System for Aircraft Component Simulation and Visualization',
       category: 'web',
-      technologies: ['Next.js', 'MDX', 'Swagger'],
+      technologies: ['React.js', '.NET Core', 'Swagger', 'SQL'],
       organization: 'Boeing',
       year: 2022
     },
     {
       id: 6,
       title: 'Medicine Manufacturing Plant',
-      description: 'Application for Medicine Composition Management and Quality Assurance ',
+      description: 'Application for Medicine Composition Management and Quality Assurance',
       category: 'web',
-      technologies: ['Angular 12', 'Node.JS', 'Databricks'],
+      technologies: ['Angular 12', 'Node.JS', 'Databricks', 'SQL'],
       organization: 'TCS',
       year: 2021
+    },
+    {
+      id: 7,
+      title: 'Vaccine Distribution Portal',
+      description: 'COVID Vaccine Request and Distribution System across Countries',
+      category: 'web',
+      technologies: ['Microsoft PowerApps', 'MS Flow'],
+      organization: 'TCS',
+      year: 2020
+    },
+    {
+      id: 8,
+      title: 'Application for Training Requests and Schedule Management',
+      description: 'A SharePoint site for managing training activities, encompassing training requests, scheduling, session creation, and learner group management',
+      category: 'web',
+      technologies: ['SharePoint', 'O365', 'AngularJS', '.NET Core', '.NET Scheduled Jobs'],
+      organization: 'TCS',
+      year: 2019
+    },
+    {
+      id: 9,
+      title: 'Portal for Booking Consultations with Specialists',
+      description: 'Comprehensive Portal for Surgical Product Information and Consultation Booking',
+      category: 'web',
+      technologies: ['Angular 8', 'ASP.NET', 'MVC', 'PostgreSQL', 'SSR', 'SEO'],
+      organization: 'TCS',
+      year: 2018
     },
   ];
 

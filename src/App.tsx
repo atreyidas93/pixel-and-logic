@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/home';
@@ -62,7 +62,7 @@ const App: React.FC = () => {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <SessionContext.Provider value={{ sessionTime }}>
-        <Router>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-all duration-300">
             <Header />
             <main className="pt-20">
@@ -75,7 +75,7 @@ const App: React.FC = () => {
             </main>
             <Footer />
           </div>
-        </Router>
+        </BrowserRouter>
       </SessionContext.Provider>
     </ThemeContext.Provider>
   );
