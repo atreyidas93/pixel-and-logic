@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, Globe, Filter, Code2, Palette, Sparkles } from 'lucide-react';
+import Card from '../components/Cards';
+import Badge from '../components/Badge';
 
 interface Project {
   id: number;
@@ -15,6 +17,119 @@ interface Project {
   organization?: string;
 }
 
+interface ProjectCardProps {
+  project: Project;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const getCategoryGradient = (category: string): 'blue-purple' | 'green-teal' | 'orange-red' | 'purple-pink' => {
+    const gradients: { [key: string]: 'blue-purple' | 'green-teal' | 'orange-red' | 'purple-pink' } = {
+      web: 'blue-purple',
+      mobile: 'purple-pink',
+      tool: 'green-teal',
+      design: 'orange-red',
+    };
+    return gradients[category] || 'blue-purple';
+  };
+
+  const getCategoryIconGradient = (category: string) => {
+    const gradients: { [key: string]: string } = {
+      web: 'from-blue-600 to-cyan-600',
+      mobile: 'from-purple-600 to-pink-600',
+      tool: 'from-green-600 to-teal-600',
+      design: 'from-orange-600 to-red-600',
+    };
+    return gradients[category] || 'from-gray-600 to-gray-600';
+  };
+
+  return (
+    <Card
+      gradient={getCategoryGradient(project.category)}
+      className="overflow-hidden"
+    >
+      {/* Featured Badge */}
+      {project.featured && (
+        <div className="absolute top-4 right-4 z-10">
+          <Badge variant="warning" icon={Sparkles} size="sm">
+            Featured
+          </Badge>
+        </div>
+      )}
+
+      {/* Project Header with Gradient */}
+      <div className={`-m-6 mb-4 h-48 bg-gradient-to-br ${getCategoryIconGradient(project.category)} opacity-90 group-hover:opacity-100 transition-opacity`}>
+        <div className="h-full flex items-center justify-center">
+          <Code2 className="w-16 h-16 text-white/30" />
+        </div>
+      </div>
+
+      {/* Project Content */}
+      <div>
+        <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+          {project.title}
+        </h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+          {project.description}
+        </p>
+
+        {/* Technologies */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.technologies.slice(0, 3).map((tech, index) => (
+            <Badge key={index} variant="default" size="sm">
+              {tech}
+            </Badge>
+          ))}
+          {project.technologies.length > 3 && (
+            <Badge variant="default" size="sm">
+              +{project.technologies.length - 3}
+            </Badge>
+          )}
+        </div>
+
+        {/* Links and Metadata */}
+        <div className="flex flex-wrap items-center gap-3 pt-3 border-t dark:border-gray-700">
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              aria-label="View GitHub repository"
+            >
+              <Github className="w-4 h-4" />
+              <span className="ml-1 text-sm">Code</span>
+            </a>
+          )}
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+              aria-label="View live demo"
+            >
+              <ExternalLink className="w-4 h-4" />
+              <span className="ml-1 text-sm">Live</span>
+            </a>
+          )}
+          {project.organization && (
+            <div className="ml-auto text-right">
+              <Badge variant="info" size="sm">
+                {project.organization}
+              </Badge>
+              {project.year && (
+                <span className="ml-2 text-xs text-gray-500 dark:text-gray-400">
+                  {project.year}
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </Card>
+  );
+};
+
 const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
@@ -25,7 +140,7 @@ const Projects: React.FC = () => {
       title: 'Reusable Component Library',
       description: 'A framework-agnostic component library built to travel seamlessly across modern web stacks — React, Angular, Vue, or plain Web Components.',
       category: 'design',
-      technologies: ['Web Component', 'TypeSript', 'CSS', 'Storybook'],
+      technologies: ['Web Component', 'TypeScript', 'CSS', 'Storybook'],
       github: 'https://github.com/atreyidas93/nomad-ui-lib',
       featured: true,
     },
@@ -34,7 +149,7 @@ const Projects: React.FC = () => {
       title: 'Portfolio Template',
       description: 'Modern, responsive portfolio template with dark mode, animations, and easy customization.',
       category: 'web',
-      technologies: ['React.Js', 'Typescript', 'Tailwind CSS'],
+      technologies: ['React.js', 'TypeScript', 'Tailwind CSS'],
       github: 'https://github.com/atreyidas93/pixel-and-logic',
       live: 'https://atreyidas93.github.io/pixel-and-logic/',
       featured: true
@@ -70,7 +185,7 @@ const Projects: React.FC = () => {
       title: 'Medicine Manufacturing Plant',
       description: 'Application for Medicine Composition Management and Quality Assurance',
       category: 'web',
-      technologies: ['Angular 12', 'Node.JS', 'Databricks', 'SQL'],
+      technologies: ['Angular 12', 'Node.js', 'Databricks', 'SQL'],
       organization: 'TCS',
       year: 2021
     },
@@ -115,16 +230,6 @@ const Projects: React.FC = () => {
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
 
-  const getCategoryColor = (category: string) => {
-    const colors: { [key: string]: string } = {
-      web: 'from-blue-600 to-cyan-600',
-      mobile: 'from-purple-600 to-pink-600',
-      tool: 'from-green-600 to-teal-600',
-      design: 'from-orange-600 to-red-600',
-    };
-    return colors[category] || 'from-gray-600 to-gray-600';
-  };
-
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-4">
@@ -163,95 +268,23 @@ const Projects: React.FC = () => {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-            >
-              {/* Featured Badge */}
-              {project.featured && (
-                <div className="absolute top-4 right-4 z-10">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200">
-                    <Sparkles className="w-3 h-3 mr-1" />
-                    Featured
-                  </span>
-                </div>
-              )}
-
-              {/* Project Image or Gradient */}
-              <div className={`h-48 bg-gradient-to-br ${getCategoryColor(project.category)} opacity-90 group-hover:opacity-100 transition-opacity`}>
-                <div className="h-full flex items-center justify-center">
-                  <Code2 className="w-16 h-16 text-white/30" />
-                </div>
-              </div>
-
-              {/* Project Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Links */}
-                <div className="flex gap-3">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                    >
-                      <Github className="w-5 h-5" />
-                      <span className="ml-1 text-sm">Code</span>
-                    </a>
-                  )}
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                      <span className="ml-1 text-sm">Live Demo</span>
-                    </a>
-                  )}
-                  {project.organization && (
-                    <a
-                      className="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                    >
-                      <span className="ml-1 text-sm">{project.organization}</span>
-                      &nbsp;|
-                      <span className="ml-1 text-sm">{project.year}</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
         {/* Empty State */}
         {filteredProjects.length === 0 && (
-          <div className="text-center py-12">
-            <Filter className="w-12 h-12 mx-auto text-gray-400 mb-4" />
+          <Card hover={false} padding="xl" className="text-center">
+            <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <Filter className="w-8 h-8 text-gray-400" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
+              No Projects Found
+            </h3>
             <p className="text-gray-600 dark:text-gray-400">
-              No projects found in this category.
+              No projects found in this category. Try selecting a different filter.
             </p>
-          </div>
+          </Card>
         )}
       </div>
     </div>
