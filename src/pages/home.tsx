@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code2, Clock, Search, ExternalLink } from 'lucide-react';
+import Card from '../components/Cards';
+import Badge from '../components/Badge';
 
 const Home: React.FC = () => {
   return (
@@ -65,66 +67,48 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Projects Card */}
-            <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mb-4">
-                  <Code2 className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  Projects
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Explore my technical work spanning web applications, tools, and creative experiments.
-                </p>
-                <Link
-                  to="/projects"
-                  className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:gap-2 transition-all"
-                >
-                  View Projects
-                  <ArrowRight className="ml-1 w-4 h-4" />
-                </Link>
-              </div>
-            </div>
+            <Card
+              icon={Code2}
+              iconGradient="from-blue-600 to-purple-600"
+              title="Projects"
+              description="Explore my technical work spanning web applications, tools, and creative experiments."
+              gradient="blue-purple"
+            >
+              <Link
+                to="/projects"
+                className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:gap-2 transition-all"
+              >
+                View Projects
+                <ArrowRight className="ml-1 w-4 h-4" />
+              </Link>
+            </Card>
 
             {/* Clock Card */}
-            <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-600/5 to-teal-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-teal-600 rounded-xl flex items-center justify-center mb-4">
-                  <Clock className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  Live Clock
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Real-time IST clock and session timer tracking your visit duration in the header.
-                </p>
-                <div className="text-sm text-gray-500 dark:text-gray-500">
-                  <div>Current time displayed in IST</div>
-                  <div className="mt-1">Session timer: HH:MM:SS</div>
-                </div>
+            <Card
+              icon={Clock}
+              iconGradient="from-green-600 to-teal-600"
+              title="Live Clock"
+              description="Real-time IST clock and session timer tracking your visit duration in the header."
+              gradient="green-teal"
+            >
+              <div className="text-sm text-gray-500 dark:text-gray-500">
+                <div>Current time displayed in IST</div>
+                <div className="mt-1">Session timer: HH:MM:SS</div>
               </div>
-            </div>
+            </Card>
 
             {/* Search Card */}
-            <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-600/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-red-600 rounded-xl flex items-center justify-center mb-4">
-                  <Search className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  Global Search
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Coming soon: Instantly find any content across the entire portfolio site.
-                </p>
-                <div className="inline-flex items-center px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm text-gray-500 dark:text-gray-400">
-                  Feature in Development
-                </div>
-              </div>
-            </div>
+            <Card
+              icon={Search}
+              iconGradient="from-orange-600 to-red-600"
+              title="Global Search"
+              description="Coming soon: Instantly find any content across the entire portfolio site."
+              gradient="orange-red"
+            >
+              <Badge variant="default" size="md">
+                Feature in Development
+              </Badge>
+            </Card>
           </div>
         </div>
       </section>

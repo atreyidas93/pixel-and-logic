@@ -248,7 +248,7 @@ const Contact: React.FC = () => {
               </p>
               <div className="flex items-center">
                 <span className="w-3 h-3 bg-green-400 rounded-full animate-pulse mr-2"></span>
-                <span className="text-sm">Available for freelance work</span>
+                <span className="text-sm">Available for new role</span>
               </div>
             </div>
           </div>
